@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ACCESS — Admin panel</title>
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+  <form class="login" id="login" hidden>
+    <img class="emblem" src="/img/logo.png" alt="">
+    <div class="logo">ACCESS</div>
+    <p>Admin panel</p>
+    <input type="password" id="password" placeholder="Parol" autocomplete="current-password" required>
+    <button class="btn primary" type="submit">Kirish</button>
+    <div class="error" id="loginError"></div>
+    <a href="/">← Kioskka qaytish</a>
+  </form>
+
+  <div class="shell" id="shell" hidden>
+    <header class="bar">
+      <div class="logo small"><img src="/img/logo.png" alt=""><span>ACCESS</span></div>
+      <nav class="nav" id="nav"></nav>
+      <div class="bar-end">
+        <button class="btn ghost" id="fullscreen" title="Brauzer oynasini toʻliq ekranga yoyish">⛶ Toʻliq ekran</button>
+        <a class="btn ghost" href="/" target="_blank" rel="noopener" id="kioskLink">Kioskni ochish ↗</a>
+        <button class="btn ghost" id="logout">Chiqish</button>
+      </div>
+    </header>
+    <main class="content" id="content"></main>
+  </div>
+  <div class="toast" id="toast" hidden></div>
+  <div class="kbd" id="kbd" hidden></div>
+
+  <script type="module" src="/admin/admin.js"></script>
+</body>
+</html>

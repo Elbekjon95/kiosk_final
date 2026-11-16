@@ -1,0 +1,23 @@
+{
+  "name": "access-kiosk",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ACCESS — Toshkent xalqaro aeroporti uchun ovozli AI kiosk",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server/index.js",
+    "test": "node --disable-warning=ExperimentalWarning --test"
+  },
+  "dependencies": {
+    "@fontsource-variable/manrope": "^5.2.5",
+    "@fontsource/orbitron": "^5.2.5",
+    "cheerio": "^1.0.0",
+    "cobe": "2.0.1",
+    "express": "^5.1.0",
+    "globe.gl": "^2.46.2"
+  }
+}

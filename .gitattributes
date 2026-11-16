@@ -1,0 +1,5 @@
+# Repoda hamma matn fayllari LF bilan saqlanadi (Linux/AWS server uchun), .bat fayllar — Windows uchun CRLF.
+* text=auto eol=lf
+*.bat text eol=crlf
+*.jpg binary
+*.png binary

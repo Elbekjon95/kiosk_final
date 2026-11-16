@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>ACCESS — Toshkent xalqaro aeroporti</title>
+  <link rel="icon" type="image/png" href="/img/logo.png">
+  <link rel="stylesheet" href="/css/kiosk.css">
+</head>
+<body data-mode="idle">
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <!-- cobe canvas ni o'z div iga o'raydi — shuning uchun alohida qat'iy o'lchamli quti ichida turadi -->
+  <div id="thinkGlobe" aria-hidden="true"></div>
+
+  <header class="top">
+    <div class="logo" aria-label="ACCESS"><img src="/img/logo.png" alt=""><span>ACCESS</span></div>
+    <div class="top-right">
+      <button class="weather" id="weather" type="button" hidden></button>
+      <div class="status-text" id="statusText"></div>
+      <div class="clock" id="clock">--:--:--</div>
+    </div>
+  </header>
+
+  <div class="middle">
+  <main class="stage">
+    <div class="state-label" id="stateLabel" aria-live="polite"></div>
+    <div class="bubble" id="bubble" aria-live="polite">
+      <div class="heard" id="heard" hidden></div>
+      <div class="answer" id="answer"></div>
+    </div>
+  </main>
+
+  <section class="panel" id="panel" hidden>
+    <div class="panel-head">
+      <h2 id="panelTitle"></h2>
+      <div class="panel-actions">
+        <button class="round" id="panelMic" aria-label="Savol berish"></button>
+        <button class="round" id="panelClose" aria-label="Yopish"></button>
+      </div>
+    </div>
+    <div class="panel-body" id="panelBody"></div>
+  </section>
+  </div>
+
+  <form class="ask" id="askForm" autocomplete="off">
+    <input id="askInput" type="text" maxlength="500" enterkeyhint="send">
+    <button type="submit" id="askSend" aria-label="Yuborish"></button>
+  </form>
+
+  <footer class="dock" id="dock">
+    <button class="dock-btn" data-panel="map" id="btnMap"></button>
+    <button class="dock-btn accent" data-panel="operator" id="btnOperator"></button>
+    <div class="mic-group">
+      <button class="round" id="pauseBtn" aria-label="Pauza"></button>
+      <button class="mic" id="micBtn" aria-label="Mikrofon"></button>
+      <button class="round" id="stopBtn" aria-label="Toʻxtatish"></button>
+    </div>
+    <button class="dock-btn" data-panel="flights" id="btnFlights"></button>
+    <button class="dock-btn danger" data-panel="feedback" id="btnFeedback"></button>
+  </footer>
+
+  <div class="kbd" id="kbd" hidden></div>
+  <div class="offline" id="offline" hidden></div>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
