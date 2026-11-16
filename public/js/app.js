@@ -841,8 +841,14 @@ async function reloadIfIdle(busy) {
 // Bo'sh turganda ekran yozuvlari tili almashinib turadi (uz → ru → en → ...), chunki mehmonlarning hammasi
 // o'zbekcha tushunmaydi. Yo'lovchi tegishi yoki gapirishi bilan to'xtaydi; sessiya tozalangach yana boshlanadi.
 let langRotateAt = 0;
+/**
+ * Xush kelibsiz ekrani — hech kim foydalanmayapti. Ekranga tasodifan tegish (bo'sh joyni bosish) bunga kirmaydi:
+ * faqat haqiqiy foydalanish — savol/javob, mikrofon, ochiq panel, klaviatura yoki yozilgan matn almashinishni to'xtatadi.
+ */
 function cleanScreen() {
-  return idleDone && app.mode === 'idle' && !app.panel && !recorder.active && $('kbd').hidden && !$('askInput').value;
+  return app.mode === 'idle' && !recorder.active && !app.panel && !app.history.length && $('heard').hidden
+    && $('kbd').hidden && !$('askInput').value
+    && $('answer').textContent === pick(app.config.settings.welcome); // "eshitmadim" kabi xabar ko'rinib turganda emas
 }
 function rotateLangTick() {
   const sec = Number(app.config.settings.lang_rotate_sec) || 0;
