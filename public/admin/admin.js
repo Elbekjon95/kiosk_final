@@ -307,7 +307,7 @@ async function viewSettings() {
     tts_style: text(st.tts_style),
     default_lang: h('select', null, LANG3.map(([v, l]) => h('option', { value: v, selected: st.default_lang === v }, l))),
     idle_timeout_sec: h('input', { type: 'number', min: 20, max: 600, value: st.idle_timeout_sec }),
-    lang_rotate_sec: h('input', { type: 'number', min: 0, max: 600, value: st.lang_rotate_sec ?? 30 }),
+    lang_rotate_sec: h('input', { type: 'number', min: 0, max: 600, value: st.lang_rotate_sec ?? 10 }),
     welcome: triple(st.welcome, (v) => text(v)),
     status_text: triple(st.status_text, (v) => text(v)),
     op_phone: text(st.operator?.phone, { placeholder: '+998 …' }),

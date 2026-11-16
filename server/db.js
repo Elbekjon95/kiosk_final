@@ -103,7 +103,7 @@ export const DEFAULT_SETTINGS = {
     },
   },
   idle_timeout_sec: 75,
-  lang_rotate_sec: 30, // bo'sh turganda ekran yozuvlari tili uz → ru → en almashinadi; 0 — o'chiq
+  lang_rotate_sec: 10, // bo'sh turganda ekran yozuvlari tili uz → ru → en almashinadi; 0 — o'chiq
   airports: [
     { code: 'TAS2', name: { uz: 'Xalqaro terminal', ru: 'Международный терминал', en: 'International terminal' } },
     { code: 'TAS3', name: { uz: 'Mahalliy terminal', ru: 'Терминал местных линий', en: 'Domestic terminal' } },
