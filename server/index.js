@@ -12,6 +12,9 @@ import { checkPassword, createSession, destroySession, isAdmin, requireAdmin, ra
 
 const app = express();
 app.disable('x-powered-by');
+// Serverda kiosk nginx ortida ishlaydi: X-Forwarded-For faqat shu kompyuterdagi proksidan kelsa ishoniladi.
+// Shunda so'rovlar cheklovi har bir mijozga alohida bo'ladi; to'g'ridan-to'g'ri ulanishda o'zgarish yo'q.
+app.set('trust proxy', 'loopback');
 
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');

@@ -50,7 +50,8 @@ export function rateLimit({ max, windowMs }) {
     for (const [ip, h] of hits) if (h.reset < now) hits.delete(ip);
   }, windowMs).unref();
   return (req, res, next) => {
-    const ip = req.socket.remoteAddress || 'unknown';
+    // nginx ortida — haqiqiy mijoz manzili (index.js da 'trust proxy' faqat lokal proksi uchun yoqilgan)
+    const ip = req.ip || req.socket.remoteAddress || 'unknown';
     const now = Date.now();
     let h = hits.get(ip);
     if (!h || h.reset < now) {
