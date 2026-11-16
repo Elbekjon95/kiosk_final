@@ -129,7 +129,7 @@ body.panel-open .stage { opacity: 0; pointer-events: none; }
   background: rgba(3, 7, 18, 0.72);
   font-size: 0.9rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--muted);
-  transition: color 0.3s;
+  transition: color 0.3s, opacity 0.35s ease;
 }
 body[data-mode='listening'] .state-label { color: var(--cyan); }
 body[data-mode='thinking'] .state-label { color: #c7d2fe; }
@@ -148,6 +148,11 @@ body[data-mode='speaking'] .state-label { color: var(--gold); }
   text-align: center;
 }
 .bubble.empty { visibility: hidden; }
+
+/* bo'sh turganda til almashinishi — matnlar yumshoq so'nib, yangi tilda paydo bo'ladi */
+.bubble, .dock-btn span, .status-text, .ask input::placeholder { transition: opacity 0.35s ease; }
+body.lang-fade .bubble, body.lang-fade .dock-btn span, body.lang-fade .status-text,
+body.lang-fade .state-label, body.lang-fade .ask input::placeholder { opacity: 0; }
 .bubble .heard { margin-bottom: 0.5rem; font-size: 0.95rem; color: var(--muted); }
 .bubble .answer { font-size: 1.45rem; font-weight: 600; line-height: 1.35; text-wrap: balance; }
 .bubble.long .answer { font-size: 1.15rem; font-weight: 500; }

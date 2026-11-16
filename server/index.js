@@ -40,7 +40,7 @@ function readAudio(body) {
   return { data, mime: 'audio/wav' };
 }
 
-const PUBLIC_SETTINGS = ['default_lang', 'welcome', 'status_text', 'operator', 'idle_timeout_sec', 'airports', 'tts_provider'];
+const PUBLIC_SETTINGS = ['default_lang', 'welcome', 'status_text', 'operator', 'idle_timeout_sec', 'lang_rotate_sec', 'airports', 'tts_provider'];
 
 // ---------- kiosk API ----------
 app.get('/api/config', (req, res) => {

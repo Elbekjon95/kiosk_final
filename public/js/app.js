@@ -838,11 +838,38 @@ async function reloadIfIdle(busy) {
   lastInput = Date.now() - RELOAD_AFTER_MS + 30_000; // 30 soniyadan keyin yana urinib ko'ramiz
 }
 
+// Bo'sh turganda ekran yozuvlari tili almashinib turadi (uz → ru → en → ...), chunki mehmonlarning hammasi
+// o'zbekcha tushunmaydi. Yo'lovchi tegishi yoki gapirishi bilan to'xtaydi; sessiya tozalangach yana boshlanadi.
+let langRotateAt = 0;
+function cleanScreen() {
+  return idleDone && app.mode === 'idle' && !app.panel && !recorder.active && $('kbd').hidden && !$('askInput').value;
+}
+function rotateLangTick() {
+  const sec = Number(app.config.settings.lang_rotate_sec) || 0;
+  const now = Date.now();
+  // Sanoq ekran toza bo'lgan paytdan boshlanadi (sahifa ochilganda ham — boshlang'ich til to'liq vaqt tursin)
+  if (!sec || !cleanScreen() || !langRotateAt) {
+    langRotateAt = now + sec * 1000;
+    return;
+  }
+  if (now < langRotateAt) return;
+  langRotateAt = now + sec * 1000;
+  const codes = LANGS.map((l) => l.code);
+  const next = codes[(codes.indexOf(getLang()) + 1) % codes.length];
+  // matnlar keskin sakramasin: so'nadi → til almashadi → paydo bo'ladi
+  document.body.classList.add('lang-fade');
+  setTimeout(() => {
+    if (cleanScreen()) applyLang(next);
+    document.body.classList.remove('lang-fade');
+  }, 350);
+}
+
 function idleTick() {
   if (!app.config) return;
   // Pauzadagi javob "band" hisoblanmaydi: yo'lovchi pauzani bosib ketsa, ekran baribir tozalanadi
   const busy = recorder.active || (app.mode !== 'idle' && !speaker.paused);
   reloadIfIdle(busy);
+  rotateLangTick();
   if (busy) {
     touch();
     idleDone = false;
